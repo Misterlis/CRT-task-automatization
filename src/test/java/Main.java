@@ -7,16 +7,18 @@ import com.codeborne.selenide.WebDriverRunner;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import com.codeborne.selenide.Selectors;
 
+import java.awt.*;
+
+
 public class Main {
-    String login1 = "Прохожу курс в Creativ :) ";
-    String login = "roMarkov";
-    String password = "123qaz!@#QAZ";
+    String vvod1 = "crtweb.ru";
 
     @BeforeEach
     public void beforeAll() {
@@ -25,49 +27,19 @@ public class Main {
     public void afterAll() {
     }
     @Test
-    public void Test1() {
+    public void Test1() throws AWTException, InterruptedException {
 
-        Selenide.open("https://www.markovroman.com/", CRT.class)
-                .clicHOME();
-
-        $(byText("MARKOV")).shouldBe(visible);
-    }
-
-    @Test
-    public void Test2() {
-
-        Selenide.open("https://www.markovroman.com/", CRT.class)
-                .clicSKILL();
-
-        $(byText("HARD SKILLS")).shouldBe(visible);
-    }
-    @Test
-    public void Test3() {
-
-        Selenide.open("https://www.markovroman.com/", CRT.class)
-                .clicEXPERIENS();
-
-        $(byText("EXPERIENCE")).shouldBe(visible);
-    }
-    @Test
-    public void Test4() {
-
-        Selenide.open("https://www.markovroman.com/", CRT.class)
-                .clicCONATCT();
-        $x("//*[@id='textarea_comp-kx6o565w']").sendKeys(login1);
-
-        $(byText("CONTACTS")).shouldBe(visible);
-    }
-    @Test
-    public void Test5() {
-
-        Selenide.open("https://www.markovroman.com/", CRT.class)
-                .clicBIOGRAPHY();
-
-        $(byText("BIOGRAPHYY")).shouldBe(visible);
-
+        Selenide.open("https://www.google.com/", CRT.class)
+                .searchvvod()
+                .clicsite()
+                .clicnavigation()
+                .cliccontacts();
+            sleep(2000);
+            $(byText("Нужны разработчики? Свяжитесь с нами.")).shouldBe(visible);
+            $(byText("Москва, Пресненская набережная, 12")).shouldBe(visible);
+            $(byText("Тюмень, ул. Малыгина 84 к1, 7 этаж")).shouldBe(visible);
+            $(byText("Поможем в подборе и поиске разработчиков")).scrollTo().shouldBe(visible);
+            $(byText("Заполните бриф или оставьте заявку, либо звоните, мы пообщаемся и сами все за вас заполним.")).shouldBe(visible);
 
     }
-
-
 }
